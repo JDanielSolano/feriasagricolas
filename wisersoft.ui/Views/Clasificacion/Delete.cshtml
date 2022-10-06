@@ -1,0 +1,40 @@
+﻿@model WiserSoft.UI.Models.Clasificacion
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar clasificación</h2>
+
+<h3>¿Está seguro que quiere borrar esto?</h3>
+<div>
+    <h4>Clasificacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Clasi_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clasi_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clasi_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clasi_Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

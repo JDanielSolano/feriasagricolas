@@ -1,0 +1,64 @@
+﻿@model WiserSoft.UI.Models.Productos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Productos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pdt_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pdt_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pdt_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pdt_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pdt_unidad_de_medida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pdt_unidad_de_medida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pdt_precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pdt_precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pdt_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pdt_tipo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

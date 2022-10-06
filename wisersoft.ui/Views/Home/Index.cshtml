@@ -1,0 +1,38 @@
+﻿@model WiserSoft.UI.Models.Users
+
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="info">
+            <h1>Ferias Agricolas Virtuales</h1><span>Ingreso de usuarios</span>
+        </div>
+    </div>
+    <div class="form">
+        <div class="thumbnail"><img src="https://1.bp.blogspot.com/-VXDs8Nf1xo8/Vz-Bes2-QSI/AAAAAAABK3g/Y8AP17gVEXYKkJTaFKpcYQzc-r5DZstVgCLcB/s1600/frutas17.png" /></div>
+        <form class="login-form">
+            @Html.TextBoxFor(model => model.Us_User_Name, new { @placeholder = "Usuario" })
+            @Html.ValidationMessageFor(model => model.Us_User_Name, "", new { @class = "text-danger" })
+            @Html.PasswordFor(model => model.Us_Password, new { @placeholder = "Contraseña" })
+            @Html.ValidationMessageFor(model => model.Us_Password, "", new { @class = "text-danger" })
+            <button>Ingresar</button>
+            <div style="text-align:center">
+                @Html.ValidationMessage("errorLogin")
+            </div>
+            <p class="message">¿No está registrado? <a href="@Url.Action("Create", "Clientes")">Cree una cuenta</a></p>
+        </form>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/Login/style.css" rel="stylesheet" />

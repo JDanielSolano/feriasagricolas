@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - FAV</title>
+    @Styles.Render("~/Content/Cliente")
+
+</head>
+<body>
+    <header class="navbar navbar-sticky">
+
+        <div class="site-branding">
+            <div class="inner">
+                <a href="@Url.Action("Index", "SeleccionDeFeria")" class="site-logo"><img src="~/images/logo.png" alt="Logo"></a>
+            </div>
+        </div>
+
+        <nav class="site-menu">
+            <ul>
+                <li class="active">
+                    <a href="@Url.Action("Index", "SeleccionDeFeria")"><span>Selección de feria</span></a>
+                </li>
+                <li class="active">
+                    <a href="@Url.Action("Index", "Compras")"><span>Comprar</span></a>
+
+                </li>
+
+                <li class="active">
+                    <a href="@Url.Action("Pago", "Compras")"><span>Pagar</span></a>
+
+                </li>
+
+            </ul>
+        </nav>
+        <!-- Toolbar-->
+        <div class="toolbar">
+            <div class="inner">
+                <div class="tools">
+                    <div class="account">
+                       <i class="icon-head"></i>
+                        <ul class="toolbar-dropdown">
+                            <li class="sub-menu-title"><span>Bienvenido,</span> @Session["Nombre"].ToString().ToUpper()</li>
+                            <li><a href="@Url.Action("Edit","Clientes", new { cedula = Session["Cedula"].ToString() } )">Mi perfil</a></li>
+                            <li class="sub-menu-separator"></li>
+                            <li>
+                                @Html.Partial("_LoginParcialCliente")
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - FAV by WiserSoft</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

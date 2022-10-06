@@ -1,0 +1,160 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout_Cliente.cshtml";
+    ViewBag.Title = "Pago";
+}
+<style>
+    .hideB {
+        display: none;
+    }
+</style>
+<h2>Pago</h2>
+
+<div class="container">
+    <form class="form-horizontal" role="form" id="payment-form">
+        <fieldset>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="card-holder-name">Nombre en la Tarjeta</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Carlos Peraza">
+                </div>
+            </div>
+            <div id="card-container" class="form-group">
+                <label class="col-sm-3 control-label" for="card-number">Numero de Tarjeta</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="card-number" id="card-number" placeholder="1111222233334444">
+                    <span id="error"></span>
+                </div>
+                <div class="col-sm-3">
+                    <img src="~/images/CardBrands-discover-mc-visa-amex.png" width="200" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="expiry-month">Fecha de Expiracion</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <select class="form-control" style="min-height:40px" name="expiry-month" id="expiry-month">
+                                <option value="01">Jan (01)</option>
+                                <option value="02">Feb (02)</option>
+                                <option value="03">Mar (03)</option>
+                                <option value="04">Apr (04)</option>
+                                <option value="05">May (05)</option>
+                                <option value="06">June (06)</option>
+                                <option value="07">July (07)</option>
+                                <option value="08">Aug (08)</option>
+                                <option value="09">Sep (09)</option>
+                                <option value="10">Oct (10)</option>
+                                <option value="11">Nov (11)</option>
+                                <option value="12">Dec (12)</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3">
+                            <select class="form-control" name="expiry-year" style="min-height:40px">
+                                <option value="13">2013</option>
+                                <option value="14">2014</option>
+                                <option value="15">2015</option>
+                                <option value="16">2016</option>
+                                <option value="17">2017</option>
+                                <option value="18">2018</option>
+                                <option value="19">2019</option>
+                                <option value="20">2020</option>
+                                <option value="21">2021</option>
+                                <option value="22">2022</option>
+                                <option value="23">2023</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="cvv">Codigo de Seguridad CVV</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="cvv" id="cvv" placeholder="123">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-6 control-label" for="cvv" id="message" style="color: red; font-size: 12px;">*Por favor llene las cajas para poder procesar la compra</label>
+                
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="button" class="btn hideB btn-success" id="procesar-pago">Procesar Pago</button>
+                </div>
+            </div>
+
+            
+        </fieldset>
+    </form>
+</div>
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="left:0px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="text-danger fa fa-times"></i></button>
+                <h4  style="width:100%; text-align:left" class="modal-title" id="myModalLabel">Procesando Pago...</h4>
+            </div>
+            <div class="modal-body">
+
+                <p class="open_info">Su compra ha sido realizada exitosamente</p>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+   <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<script src="~/Scripts/Ferias_Agricolas/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script>
+
+
+    $(document).ready(function () {
+        //called when key is pressed in textbox
+        var card = $("#card-number");
+        var cvv = $("#cvv");
+        
+        card.attr('maxlength', '16');
+        cvv.attr('maxlength', '3');
+
+        $("#payment-form :input[name='card-number'], #payment-form :input[name='cvv'] ").keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                // Allow: Ctrl+A, Command+A
+                (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right, down, up
+                (e.keyCode >= 35 && e.keyCode <= 40)) {
+                // let it happen, don't do anything
+                return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+            
+        });
+        $("#payment-form :input[name='card-number'], #payment-form :input[name='cvv'], #payment-form :input[name='card-holder-name']  ").keyup(function (e) {
+            if (cvv.val().length > 2 && card.val().length > 15 && $("card-holder-name").val() != "") {
+                $("#message").fadeOut();
+                $("#procesar-pago").fadeIn();
+                
+            }
+        });
+
+        $("#procesar-pago").click(function () {
+
+
+            $('#myModal').modal('show');
+        });
+        
+    });
+        
+</script>
+    
+
+}

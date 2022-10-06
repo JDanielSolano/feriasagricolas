@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout_Cliente.cshtml";
+    ViewBag.Title = "Selecion de feria";
+}
+
+
+@section scripts
+{
+    <script src="~/Scripts/Ferias_Agricolas/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/SeleccionDeFeria/index.js"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key= AIzaSyC0keSm3aVkik-i1wbA4ekls63uyK4oPic "></script>
+}
+<br />
+<br />
+<h2>Seleccione en el mapa la feria a consultar:</h2>
+<br />
+<input type="text" id="txtferias" value="@ViewData["ferias"]" style="display:none" />
+<input type="text" id="txtcliente" value="@ViewData["cliente"]" style="display:none" />
+<div id="mapa" style="width:100%;min-height:500px;padding-left:20px;">
+
+</div>

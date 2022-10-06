@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <title>@ViewBag.Title - FAV</title>
+    @Styles.Render("~/Content/Admin")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="@Url.Action("UserDashboard", "Home")" class="navbar-brand">Administración FAV</a>
+        </div>
+        <ul class="nav navbar-right top-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> @Session["UserID"].ToString().ToUpper()<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li class="divider"></li>
+                    <li>
+                        @Html.Partial("_LoginParcial")
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Agricultores")"><i class="fa fa-fw fa-child"></i> Agricultores</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Clasificacion")"><i class="fa fa-fw fa-list"></i> Clasificaciones</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Clientes")"><i class="fa fa-fw fa-child"></i> Clientes</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Ferias_Agricolas")"><i class="fa fa-fw fa-map-marker"></i> Ferias Agricolas</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Medidas")"><i class="fa fa-fw fa-sort-numeric-asc"></i> Medidas</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Productos")"><i class="fa fa-fw fa-shopping-cart"></i> Productos</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Productos_Por_Agricultor")"><i class="fa fa-fw fa-lemon-o"></i> Productos por Agricultor</a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Users")"><i class="fa fa-fw fa-users"></i> Usuarios</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="wrapper">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/Admin")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

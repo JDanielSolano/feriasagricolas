@@ -1,0 +1,64 @@
+﻿@model WiserSoft.UI.Models.Ferias_Agricolas
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Ferias_Agricolas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fa_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fa_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fa_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fa_Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fa_Distrito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fa_Distrito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fa_Latitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fa_Latitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fa_longitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fa_longitud)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

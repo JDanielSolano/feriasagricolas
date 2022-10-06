@@ -1,0 +1,60 @@
+﻿@model WiserSoft.UI.Models.Medidas
+
+@{
+    ViewBag.Title = "Crear";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Creación
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-sort-numeric-asc"></i> @Html.ActionLink("Medidas", "Index", "Medidas")
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-ticket"></i> Crear medidas
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <form role="form">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        
+                        <br />
+                        <div class="form-group input-group col-md-8">
+                            @Html.Label("Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Mdd_Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Mdd_Nombre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10">
+                                <button class="btn btn-custom" onclick="location.href='@Url.Action("Index", "Medidas")';return false;"><i class="fa fa-arrow-left"></i> Volver</button>
+                                <input type="submit" value="Crear dato" class="btn btn-custom" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

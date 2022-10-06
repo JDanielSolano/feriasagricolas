@@ -1,0 +1,321 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout_Cliente.cshtml";
+    ViewBag.Title = "Compra de productos";
+}
+
+
+<br />
+@{
+    var agricultores = (List<WiserSoft.UI.Models.Agricultores>)ViewData["Agricultores"];
+    var clasificacion = (List<WiserSoft.UI.Models.Clasificacion>)ViewData["Clasificacion"];
+    var cestas = (List<WiserSoft.UI.Models.Canastas>)ViewData["canasta"];
+}
+<div id="panelFiltros" style="display:none">
+    <div class="row" style="background-color:#f5f3f3; padding:7px; border-radius:10px">
+
+        @using (Html.BeginForm("Buscar", "Compras", FormMethod.Post, new { id = "filterForm" }))
+        {
+            <div class="col-lg-6">
+                <div class="form-group">
+                    @Html.Label("Producto:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("filProducto", ViewData["filProducto"], new { @class = "form-control", style = "width:100%; margin:2px" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Clasificación:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("Filtro", "", new { style = "display:none;" })
+                        <select id="tipoProductos" data-placeholder="Escoja el tipo de producto..." class="chosen-select" multiple style="width:600px;">
+                            @foreach (var item in clasificacion)
+                            {
+                                if (item.usadoEnFiltro == 1)
+                                {
+                                    <option selected value="@item.Clasi_Nombre">@item.Clasi_Nombre</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Clasi_Nombre">@item.Clasi_Nombre</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <div style="text-align:center">
+                        <input type="submit" value="Aplicar filtros" style="width:50%" class="btn btn-primary" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    @Html.Label("Crear cesta:", htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9 form-inline">
+                        @Html.TextBox("txtcesta", "", new { @class = "form-control", style = "width:70%; margin:2px" })
+                        <input type="button" id="btncrear" value="Crear" class="btn btn-primary" style="margin-bottom: 8px;" />
+                    </div>
+                </div>
+
+                <div class="form-group" style="text-align:center">
+                    @Html.Label("Utilizando:", htmlAttributes: new { @class = "control-label col-md-3" })
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-9 form-inline">
+                        @Html.TextBox("cmbcesta", "", new { style = "display:none;" })
+                        <select id="cmb_cesta" data-placeholder="Seleccione una canasta" style="width:300px;" class="chosen-select" tabindex="7">
+                            @foreach (var item in cestas)
+                            {
+                                if (item.seleccionada == 1)
+                                {
+                                    <option selected value="@item.Can_id">@item.Can_nombre</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Can_id">@item.Can_nombre</option>
+                                }
+                            }
+                        </select>
+
+                    </div>
+                </div>
+                <div>
+                    <div style="text-align:center">
+                        <input type="button" id="btnDetalles" value="Ver detalles" class="btn btn-primary" disabled />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+
+
+    <style>
+        /*Estilos Base*/
+        .contenedor-img {
+            width: 162px;
+            height: 214px;
+            border-radius: 7px;
+            float: left;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            cursor: default;
+            background: #fff;
+            border-radius: 15px;
+        }
+
+            .contenedor-img .mascara, .contenedor-img .contenido {
+                border-radius: 7px;
+                width: 162px;
+                height: 214px;
+                position: absolute;
+                overflow: hidden;
+                top: 0;
+                left: 0;
+            }
+
+            .contenedor-img img {
+                display: block;
+                position: relative;
+            }
+
+            .contenedor-img h2 {
+                text-transform: uppercase;
+                color: #fff;
+                text-align: center;
+                position: relative;
+                font-size: 17px;
+                padding: 10px;
+                background-color: #358a0e;
+                margin: 20px 0 0 0;
+            }
+
+            .contenedor-img p {
+                font-size: 12px;
+                position: relative;
+                color: #fff;
+                padding: 10px 20px 10px;
+                text-align: center;
+            }
+
+            .contenedor-img a.link {
+                display: inline-block;
+                text-decoration: none;
+                padding: 7px 14px;
+                background: #222;
+                color: #fff;
+                text-transform: uppercase;
+                box-shadow: 0 0 1px #000;
+            }
+
+                .contenedor-img a.link:hover {
+                    box-shadow: 0 0 5px #000;
+                }
+        /*Ejemplo 1*/
+        .ejemplo-1 img {
+            transition: all 0.2s linear;
+        }
+
+        .ejemplo-1 .mascara {
+            opacity: 0;
+            background-color: rgb(128, 128, 128,0.7);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .ejemplo-1 h2 {
+            transform: translateX(-200px); /*Desplazamos a la izquierda*/
+            opacity: 0;
+            transition: all 0.7s ease-in-out;
+            margin: 0px;
+        }
+
+        .ejemplo-1 p {
+            transform: translateX(200px); /*Desplazamos a la derecha*/
+            opacity: 0;
+            transition: all 0.4s linear;
+        }
+
+        .ejemplo-1 a.link {
+            opacity: 0;
+            transition: all 0.4s ease-in-out;
+            transform: translateY(100px); /*Desplazamos para abajo*/
+        }
+
+        .ejemplo-1:hover img {
+            transform: scale(1.1); /*Damos un ligero zoom a la imagen*/
+        }
+
+        .ejemplo-1:hover .mascara {
+            opacity: 1;
+        }
+
+        .ejemplo-1:hover h2,
+        .ejemplo-1:hover p,
+        .ejemplo-1:hover a.link {
+            opacity: 1;
+            transform: translateX(0px); /*Regresamos a las posiciones originales*/
+        }
+
+        .ejemplo-1:hover p {
+            transition-delay: 0.1s;
+        }
+
+        .ejemplo-1:hover a.link {
+            transition-delay: 0.2s; /*Aplicamos un pequeño retardo para que se muestre al final*/
+            transform: translateY(0px);
+        }
+    </style>
+
+    <br />
+
+    @foreach (var agricultor in agricultores.Where(x => x.Agr_Feria_A_La_Que_Asiste == Convert.ToInt32(Session["feria"])))
+    {
+        //.Where(x =>x.Agr_Feria_A_La_Que_Asiste==Convert.ToInt32(Session["feria"]))
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        @{
+                            var base64 = Convert.ToBase64String(agricultor.Agr_Foto);
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        }
+                        <img class="media-object dp img-circle" src="@imgSrc" style="width: 100px;height:100px;">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">@agricultor.Agr_Nombre <small>(@agricultor.Agr_Alias)</small></h4>
+                        <h5>@agricultor.Provincias.Pro_nombre, @agricultor.Cantones.cnt_nombre, @agricultor.Distritos.dis_nombre</h5>
+                        <hr style="margin:8px auto">
+                        <span class="label label-default">Ferias</span>
+                        <span class="label label-primary">Productor nacional</span>
+                        <span class="label label-info">@agricultor.Provincias.Pro_nombre</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+
+                @foreach (var item in agricultor.Productos)
+                {
+                    <div class="contenedor-img ejemplo-1" style="border: 5px solid #fff;">
+                        @{
+                            var base64Prod = Convert.ToBase64String(item.Producto.Pdt_foto);
+                            var imgSrcProd = String.Format("data:image/gif;base64,{0}", base64Prod);
+                        }
+                        <img src="@imgSrcProd" style="width: 150px;height:200px;border-radius: 15px;">
+                        <div class="mascara">
+
+                            <h2>@Html.DisplayFor(modelItem => item.Producto.Pdt_nombre)</h2>
+                            <h3 style="color:#fff;margin-bottom:0px;margin-top:3px">₡@Html.DisplayFor(modelItem => item.Producto.Pdt_precio)</h3>
+                            <h3 style="color:#fff;margin-bottom:0px;margin-top:3px">@Html.DisplayFor(modelItem => item.Producto.Medidas.Mdd_Nombre)</h3>
+                            @using (Html.BeginForm("Comprar", "Compras", FormMethod.Post, new { id = "ComprarForm" }))
+                            {
+                                <input type="number" id="txt_@item.Ppa_Id" placeholder="Cantidad" style="max-width:100px; margin-bottom: 5px; margin-left:30px" class="form-control" />
+                                <a id="btn_@item.Ppa_Id" class="link btnComprar">Agregar a Cesta</a>
+                            }
+                        </div>
+                    </div>
+                            }
+            </div>
+        </div>
+        <hr />
+                            }
+
+
+
+
+    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="left:0px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="text-danger fa fa-times"></i></button>
+                    <h4 style="width:100%; text-align:left" class="modal-title" id="myModalLabel">Canasta - <strong id="tituloModal"></strong></h4>
+                </div>
+                <div class="modal-body">
+
+                    <table class="pull-left col-md-12 ">
+                        <thead>
+                            <tr>
+                                <th style='text-align:center'>Cantidad</th>
+                                <th style='text-align:center'>Unidad de medida</th>
+                                <th style='text-align:center'>Producto</th>
+                                <th style='text-align:center'>Precio</th>
+                                <th style='text-align:center'>Total</th>
+                                <th style='text-align:center'>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyProductos"></tbody>
+                    </table>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <div class="text-right pull-right col-md-12">
+                        Total: <br />
+                        <span class="h3 text-muted"><strong id="txtTotal"> </strong></span><br />
+                        <div style="text-align:center">
+                        @using (Html.BeginForm("Pago", "Compras", FormMethod.Post))
+                        {
+                            <input type="submit" id="" value="Pagar" class="btn btn-primary" />
+                        }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/Ferias_Agricolas/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Scripts/Compras/chosen.css">
+    <script src="~/Scripts/Compras/chosen.jquery.js"></script>
+    <script src="~/Scripts/Compras/create.js"></script>
+
+}

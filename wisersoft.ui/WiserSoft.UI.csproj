@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F2D6912A-CE47-40E6-914F-5112B7791AB8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WiserSoft.UI</RootNamespace>
+    <AssemblyName>WiserSoft.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\DLL\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ServiceStack.Common, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DLL\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AgricultoresController.cs" />
+    <Compile Include="Controllers\CanastasController.cs" />
+    <Compile Include="Controllers\ClasificacionController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\ComprasController.cs" />
+    <Compile Include="Controllers\Ferias_AgricolasController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MedidasController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\Productos_Por_AgricultorController.cs" />
+    <Compile Include="Controllers\SeleccionDeFeriaController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Encriptacion\Encriptacion.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Agricultores.cs" />
+    <Compile Include="Models\Canastas.cs" />
+    <Compile Include="Models\Cantones.cs" />
+    <Compile Include="Models\Clasificacion.cs" />
+    <Compile Include="Models\Clientes.cs" />
+    <Compile Include="Models\Compras.cs" />
+    <Compile Include="Models\Distritos.cs" />
+    <Compile Include="Models\Ferias_Agricolas.cs" />
+    <Compile Include="Models\Medidas.cs" />
+    <Compile Include="Models\Productos.cs" />
+    <Compile Include="Models\Productos_Por_Agricultor.cs" />
+    <Compile Include="Models\Provincias.cs" />
+    <Compile Include="Models\Users.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Admin\bootstrap.css" />
+    <Content Include="Content\Admin\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\Admin\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\Admin\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Admin\morris.css" />
+    <Content Include="Content\Admin\sb-admin.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Cliente\card.min.css" />
+    <Content Include="Content\Cliente\styles.min.css" />
+    <Content Include="Content\Cliente\vendor.min.css" />
+    <Content Include="Content\Login\style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="images\CardBrands-discover-mc-visa-amex.png" />
+    <Content Include="images\casa.png" />
+    <Content Include="images\feriaR.png" />
+    <Content Include="images\feria.png" />
+    <Content Include="images\Agricultores\Agri.png" />
+    <Content Include="Content\Login\FondoLogin.jpg" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\Productos\apio .jpg" />
+    <Content Include="images\Productos\ayote sazon .jpg" />
+    <Content Include="images\Productos\ayote tierno .jpg" />
+    <Content Include="images\Productos\banano criollo .jpg" />
+    <Content Include="images\Productos\brocoli .jpg" />
+    <Content Include="images\Productos\camote .jpg" />
+    <Content Include="images\Productos\cebolla .jpg" />
+    <Content Include="images\Productos\coco .jpg" />
+    <Content Include="images\Productos\coliflor .jpg" />
+    <Content Include="images\Productos\culantro .jpg" />
+    <Content Include="images\Productos\huevos.jpg" />
+    <Content Include="images\Productos\tomates .jpg" />
+    <Content Include="images\Productos\fresas .jpg" />
+    <Content Include="images\Productos\lechuga .jpg" />
+    <Content Include="images\Productos\papa .jpg" />
+    <Content Include="images\Productos\vainica.jpg" />
+    <Content Include="Scripts\Admin\bootstrap.js" />
+    <Content Include="Scripts\Admin\bootstrap.min.js" />
+    <Content Include="Scripts\Admin\counter.js" />
+    <Content Include="Scripts\Admin\custom.js" />
+    <Content Include="Scripts\Admin\excanvas.js" />
+    <Content Include="Scripts\Admin\fullcalendar.min.js" />
+    <Content Include="Scripts\Admin\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\Admin\jquery-migrate-1.0.0.min.js" />
+    <Content Include="Scripts\Admin\jquery-ui-1.10.0.custom.min.js" />
+    <Content Include="Scripts\Admin\jquery.chosen.min.js" />
+    <Content Include="Scripts\Admin\jquery.cleditor.min.js" />
+    <Content Include="Scripts\Admin\jquery.cookie.js" />
+    <Content Include="Scripts\Admin\jquery.dataTables.min.js" />
+    <Content Include="Scripts\Admin\jquery.elfinder.min.js" />
+    <Content Include="Scripts\Admin\jquery.flot.js" />
+    <Content Include="Scripts\Admin\jquery.flot.pie.js" />
+    <Content Include="Scripts\Admin\jquery.flot.resize.min.js" />
+    <Content Include="Scripts\Admin\jquery.flot.stack.js" />
+    <Content Include="Scripts\Admin\jquery.gritter.min.js" />
+    <Content Include="Scripts\Admin\jquery.imagesloaded.js" />
+    <Content Include="Scripts\Admin\jquery.iphone.toggle.js" />
+    <Content Include="Scripts\Admin\jquery.knob.modified.js" />
+    <Content Include="Scripts\Admin\jquery.masonry.min.js" />
+    <Content Include="Scripts\Admin\jquery.noty.js" />
+    <Content Include="Scripts\Admin\jquery.raty.min.js" />
+    <Content Include="Scripts\Admin\jquery.sparkline.min.js" />
+    <Content Include="Scripts\Admin\jquery.ui.touch-punch.js" />
+    <Content Include="Scripts\Admin\jquery.uniform.min.js" />
+    <Content Include="Scripts\Admin\jquery.uploadify-3.1.min.js" />
+    <Content Include="Scripts\Admin\modernizr.js" />
+    <Content Include="Scripts\Admin\retina.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Admin\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Admin\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Admin\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Admin\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\Admin\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Content\Admin\font-awesome\less\core.less" />
+    <Content Include="Content\Admin\font-awesome\less\fixed-width.less" />
+    <Content Include="Content\Admin\font-awesome\less\font-awesome.less" />
+    <Content Include="Content\Admin\font-awesome\less\icons.less" />
+    <Content Include="Content\Admin\font-awesome\less\larger.less" />
+    <Content Include="Content\Admin\font-awesome\less\list.less" />
+    <Content Include="Content\Admin\font-awesome\less\mixins.less" />
+    <Content Include="Content\Admin\font-awesome\less\path.less" />
+    <Content Include="Content\Admin\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Content\Admin\font-awesome\less\spinning.less" />
+    <Content Include="Content\Admin\font-awesome\less\stacked.less" />
+    <Content Include="Content\Admin\font-awesome\less\variables.less" />
+    <Content Include="Content\Admin\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_core.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_icons.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_larger.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_list.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_mixins.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_path.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_spinning.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_stacked.scss" />
+    <Content Include="Content\Admin\font-awesome\scss\_variables.scss" />
+    <Content Include="Content\fonts\feather-webfont.eot" />
+    <Content Include="Content\fonts\feather-webfont.ttf" />
+    <Content Include="Content\fonts\feather-webfont.woff" />
+    <Content Include="Content\fonts\feather-webfontd41d.eot" />
+    <Content Include="Content\fonts\socicon.eot" />
+    <Content Include="Content\fonts\socicon.ttf" />
+    <Content Include="Content\fonts\socicon.woff" />
+    <Content Include="Content\fonts\socicond41d.eot" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\Cliente\card.min.js" />
+    <Content Include="Content\fonts\feather-webfont.svg" />
+    <Content Include="Content\fonts\socicon.svg" />
+    <Content Include="Scripts\Cliente\cliente.js" />
+    <Content Include="Scripts\Cliente\modernizr.min.js" />
+    <Content Include="Scripts\Cliente\scripts.min.js" />
+    <Content Include="Scripts\Cliente\vendor.min.js" />
+    <Content Include="Scripts\Compras\chosen.css" />
+    <Content Include="Scripts\Compras\chosen.jquery.js" />
+    <Content Include="Scripts\Compras\create.js" />
+    <Content Include="Scripts\Ferias_Agricolas\edit.js" />
+    <Content Include="Scripts\Ferias_Agricolas\create.js" />
+    <Content Include="Scripts\Ferias_Agricolas\index.js" />
+    <Content Include="Scripts\Ferias_Agricolas\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Login\index.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SeleccionDeFeria\index.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout_Cliente.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Ferias_Agricolas\Index.cshtml" />
+    <Content Include="Views\Ferias_Agricolas\Create.cshtml" />
+    <Content Include="Views\Ferias_Agricolas\Edit.cshtml" />
+    <Content Include="Views\Productos\Index.cshtml" />
+    <Content Include="Views\Productos\Edit.cshtml" />
+    <Content Include="Views\Clasificacion\Create.cshtml" />
+    <Content Include="Views\Clasificacion\Delete.cshtml" />
+    <Content Include="Views\Clasificacion\Edit.cshtml" />
+    <Content Include="Views\Clasificacion\Index.cshtml" />
+    <Content Include="Views\Medidas\Create.cshtml" />
+    <Content Include="Views\Medidas\Delete.cshtml" />
+    <Content Include="Views\Medidas\Edit.cshtml" />
+    <Content Include="Views\Medidas\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\SeleccionDeFeria\Index.cshtml" />
+    <Content Include="Views\Compras\IndexRespaldo.cshtml" />
+    <Content Include="Views\Compras\Index.cshtml" />
+    <Content Include="Views\Agricultores\Create.cshtml" />
+    <Content Include="Views\Agricultores\Delete.cshtml" />
+    <Content Include="Views\Agricultores\Edit.cshtml" />
+    <Content Include="Views\Agricultores\Index.cshtml" />
+    <Content Include="Views\Home\UserDashboard.cshtml" />
+    <Content Include="Views\Home\ClientDashboard.cshtml" />
+    <Content Include="Views\Compras\Pago.cshtml" />
+    <Content Include="Views\Inicio\About.cshtml" />
+    <Content Include="Views\Inicio\Contact.cshtml" />
+    <Content Include="Views\Inicio\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_Administrador.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Productos_Por_Agricultor\Create.cshtml" />
+    <Content Include="Views\Productos_Por_Agricultor\Delete.cshtml" />
+    <Content Include="Views\Productos_Por_Agricultor\Edit.cshtml" />
+    <Content Include="Views\Productos_Por_Agricultor\Index.cshtml" />
+    <Content Include="Views\Productos\Delete.cshtml" />
+    <Content Include="Views\Ferias_Agricolas\Delete.cshtml" />
+    <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Shared\_LoginParcial.cshtml" />
+    <Content Include="Views\Shared\_LoginParcialCliente.cshtml" />
+    <Content Include="Views\Clientes\EditarCliente.cshtml" />
+    <Content Include="Views\Productos\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="images\Uploads\" />
+    <Folder Include="Views\Canastas\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WiserSoft.DAL\WiserSoft.DAL.csproj">
+      <Project>{4d722444-b684-46c4-9ce5-5019d26f16f8}</Project>
+      <Name>WiserSoft.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WiserSoft.DATA\WiserSoft.DATA.csproj">
+      <Project>{eb66fbaa-05bd-4be3-9838-7147148a3e92}</Project>
+      <Name>WiserSoft.DATA</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56450</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50095/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

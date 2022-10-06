@@ -1,0 +1,79 @@
+﻿@model WiserSoft.UI.Models.Productos_Por_Agricultor
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Edición
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-fw fa-lemon-o"></i> @Html.ActionLink("Productos por Agricultor", "Index", "Productos_Por_Agricultor")
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-edit"></i> Editar producto por agricultor
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <form role="form">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div style="display:none">
+                            @Html.TextBoxFor(model => model.Ppa_Id)
+                        </div>
+                        <div class="form-group input-group col-md-10">
+                            @Html.Label("Agricultor", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.Ppa_Id_Agricultor,
+                                new SelectList(ViewBag.Agricultores, "Value", "Text"),
+                                "Seleccione un agricultor:",
+                                new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Ppa_Id_Agricultor, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group input-group col-md-10">
+                            @Html.Label("Producto", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.Ppa_Id_Producto,
+                                new SelectList(ViewBag.Productos, "Value", "Text"),
+                                "Seleccione un producto:",
+                                new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Ppa_Id_Producto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10">
+                                <button class="btn btn-custom" onclick="location.href='@Url.Action("Index", "Productos_Por_Agricultor")';return false;"><i class="fa fa-arrow-left"></i> Volver</button>
+                                <input type="submit" value="Editar dato" class="btn btn-custom" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

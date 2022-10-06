@@ -1,0 +1,112 @@
+﻿@model WiserSoft.DATA.Productos
+
+@{
+    ViewBag.Title = "Editar";
+}
+@using (Html.BeginForm("Edit", "Productos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Edición
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-fw fa-shopping-cart"></i> @Html.ActionLink("Productos", "Index", "Productos")
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-edit"></i> Editar producto
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <form role="form">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div style="display:none">
+                            @Html.TextBoxFor(model => model.Pdt_id)
+                        </div>
+                        <div class="form-group input-group col-md-10">
+                            @Html.Label("Nombre:", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Pdt_nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Pdt_nombre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group input-group col-md-10">
+                            @Html.Label("Unidad de medida", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.Pdt_unidad_de_medida,
+                                new SelectList(ViewBag.Medidas, "Value", "Text"),
+                                "Seleccione una medida:",
+                                new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Pdt_unidad_de_medida, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group input-group col-md-10">
+                            @Html.Label("Precio:", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Pdt_precio, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Pdt_precio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group input-group col-md-10">
+                            @Html.Label("Tipo:", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.Pdt_tipo,
+                                new SelectList(ViewBag.Tipo, "Value", "Text"),
+                                "Seleccione un tipo:",
+                                new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Pdt_tipo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group input-group col-md-10">
+                            @Html.Label("Foto:", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" name="Photo" id="Photo" />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10">
+                                <button class="btn btn-custom" onclick="location.href='@Url.Action("Index", "Productos")';return false;"><i class="fa fa-arrow-left"></i> Volver</button>
+                                <input type="submit" value="Editar dato" class="btn btn-custom" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $.validator.methods.number = function (value, element) {
+        value = floatValue(value);
+        return this.optional(element) || !isNaN(value);
+    }
+    $.validator.methods.range = function (value, element, param) {
+        value = floatValue(value);
+        return this.optional(element) || (value >= param[0] && value <= param[1]);
+    }
+
+    function floatValue(value) {
+        return parseFloat(value.replace(",", "."));
+    }
+</script>
+
+}

@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Usuario";
+}
+
+<br />
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-sm-4">
+        <canvas id="miGrafico1" width="25px" height="25px"></canvas>
+    </div>
+    <div class="col-sm-4">
+        <canvas id="miGrafico2" width="25px" height="25px"></canvas>
+    </div>
+    <div class="col-sm-4">
+
+        <canvas id="miGrafico3" width="25px" height="25px"></canvas>
+    </div>
+</div>
+
+
+<script>
+
+
+        var datos1 = @Html.Raw(Json.Encode(ViewBag.Contenido_Agricultores));
+        var grupo1 = @Html.Raw(Json.Encode(ViewBag.Agricultores));
+        var myChart2 = new Chart(document.getElementById("miGrafico1"), {
+            type: 'pie',
+            data: {
+                labels: grupo1,
+                datasets: [{
+                    label: "",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                    data: datos1
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Cantidad de Productos por Agricultor'
+                }
+            }
+        });
+
+        var datos2 = @Html.Raw(Json.Encode(ViewBag.Contenido_Canasta));
+        var grupo2 = @Html.Raw(Json.Encode(ViewBag.Usuarios));
+        var miGrafico2 = new Chart(document.getElementById("miGrafico2"), {
+            type: 'pie',
+            data: {
+                labels: grupo2,
+                datasets: [{
+                    label: "",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                    data: datos2
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Cantidad de Canastas por Usuarios'
+                }
+            }
+        });
+
+        var datos3 = @Html.Raw(Json.Encode(ViewBag.Contenido_Tipos));
+        var grupo3 = @Html.Raw(Json.Encode(ViewBag.Tipos));
+        var miGrafico3 = new Chart(document.getElementById("miGrafico3"), {
+            type: 'pie',
+            data: {
+                labels: grupo3,
+                datasets: [{
+                    label: "",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                    data: datos3
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Tipos de Productos'
+                }
+            }
+        });
+
+</script>

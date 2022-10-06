@@ -1,0 +1,78 @@
+﻿@model IEnumerable<WiserSoft.UI.Models.Productos_Por_Agricultor>
+
+@{
+    ViewBag.Title = "Productos por Agricultor";
+}
+
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Productos Por Agricultor
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-lemon-o"></i> @Html.ActionLink("Productos por Agricultor", "Index", "Productos_Por_Agricultor")
+                    </li>
+                </ol>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <div style="text-align:center">
+                        @Html.ValidationMessage("error_delete", new { @class = "text-danger" })
+                    </div>
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayName("Cédula Agricultor")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Nombre")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Apellidos")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Produco")
+                                </th>
+                                <th>
+                                    @Html.ActionLink("Crear producto por agricultor", "Create")
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                             {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Ppa_Id_Agricultor)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Agricultores.Agr_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Agricultores.Agr_Apellidos)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Producto.Pdt_nombre)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "Edit", new { Ppa_Id = item.Ppa_Id }, new { @class = "btn btn-custom" })  |
+                                        @Html.ActionLink("Eliminar", "Delete", new { Ppa_Id = item.Ppa_Id }, new { @class = "btn btn-custom" })
+                                    </td>
+                                   
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
